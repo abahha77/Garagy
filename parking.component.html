@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div *ngIf="!book; else fillForm">
+      <div class="headings">
+        <h1 class="text-primary text-center mt-5 pt-5">
+          PARKING JUST GOT A LOT SIMPLER
+        </h1>
+        <h4 class="pt-2 text-center">Book the Best Spaces & Save Up to 50%</h4>
+      </div>
+
+      <div class="search mt-5 d-flex position-relative">
+        <label for="search"></label>
+        <input
+          id="search"
+          type="text"
+          name="username"
+          #username
+          class="border w-50 searchpark ps-3"
+          placeholder="Search Address,place or event"
+        />
+        <button
+          class="btn btn-outline-danger"
+          (click)="getAvailableparks(username.value)"
+        >
+          Find Parking
+        </button>
+      </div>
+
+      <div class="table mt-4">
+        <table class="table border shadow outline">
+          <thead>
+            <th>city</th>
+            <th>address</th>
+            <th>area</th>
+            <th>parkid</th>
+            <th>hours</th>
+            <th>isEmpty</th>
+            <th>Reservation</th>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>{{ str1 }}</td>
+              <td>{{ str2 }}</td>
+              <td>{{ str3 }}</td>
+              <td>{{ str4 }}</td>
+              <td>{{ str5 }}</td>
+              <td>{{ str6 }}</td>
+              <td>
+                <button
+                  class="btn-outline-primary btn d-none"
+                  #myButton
+                  [ngClass]="{ 'd-none': !isSearchClicked }"
+                  (click)="openForm()">
+                  book
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <ng-template #fillForm>
+      <form>
+        <div class="form-Control">
+          <label> Choose your day of reservation:</label> <br />
+        
+          <br />
+          <br />
+
+          <label> From: </label><br />
+          <div class="time-inputs">
+            <input
+              class="form-control"
+              type="number"
+              id="hour-1"
+              (input)="firstHour = $any($event.target).value"
+              placeholder="Hour"
+            />
+            <span> : </span>
+            <input
+              class="form-control"
+              type="number"
+              id="minutes-1"
+              (input)="firstMinute = $any($event.target).value"
+              placeholder="Minute"
+            />
+          </div>
+          <div class="time-check">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                name="time"
+                type="radio"
+                id="firstAM"
+                (input)="firstAM = $any($event.target).value"
+              />
+              <label class="form-check-label" for="flexRadioDefault1">
+                AM
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                name="time"
+                type="radio"
+                id="firstPM"
+                (input)="firstPM = $any($event.target).value"
+              />
+              <label class="form-check-label" for="flexRadioDefault2">
+                PM
+              </label>
+            </div>
+          </div>
+
+          <label> Departure Time: </label>
+          <div class="time-inputs">
+            <input
+              class="form-control"
+              type="number"
+              id="hour-2"
+              (input)="lastHour = $any($event.target).value"
+              placeholder="Hour"
+            />
+            <span> : </span>
+            <input
+              class="form-control"
+              type="number"
+              id="minutes-2"
+              (input)="lastMinute = $any($event.target).value"
+              placeholder="Minute"
+            />
+          </div>
+          <div class="time-check">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                name="time-2"
+                type="radio"
+                id="lastAM"
+                (input)="lastAM = $any($event.target).value"
+              />
+              <label class="form-check-label" for="flexRadioDefault1">
+                AM
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                name="time-2"
+                type="radio"
+                id="lastPM"
+                (input)="lastPM = $any($event.target).value"
+              />
+              <label class="form-check-label" for="flexRadioDefault2">
+                PM
+              </label>
+            </div>
+          </div>
+
+          <br />
+
+          <span>
+            Rate is 50LE for the first hour and 40LE for each one after.
+          </span>
+          <br />
+          <button (click)="getPrice()">Check total</button>
+          <br />
+          <br />
+          <span *ngIf="checked"> Your total is {{ this.price }} LE</span><br />
+          <br />
+          <div id="button">
+            <button (click)="closeForm()" class="btn btn-danger">Cancel</button>
+            <button class="btn btn-success" (click)="updatePark()">
+              Confirm
+            </button>
+          </div>
+        </div>
+      </form>
+    </ng-template>
+  </body>
+</html>

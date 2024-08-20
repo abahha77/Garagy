@@ -1,0 +1,42 @@
+.searchpark {
+  height: 60px !important;
+  margin-left: 200px;
+}
+form {
+  border: black 2px solid;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.time-check {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 150px;
+  margin-left: 180px;
+}
+.time-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 275px;
+  margin-left: 120px;
+}
+#button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.form-control {
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+}
+span {
+  font-size: 20px;
+}

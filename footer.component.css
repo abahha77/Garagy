@@ -1,0 +1,13 @@
+ul {
+  display: flex;
+  flex: row;
+  justify-content: space-around;
+}
+div {
+  text-align: center;
+  font-size: 20px;
+}
+a {
+  text-align: none;
+  color: black;
+}
